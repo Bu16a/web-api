@@ -26,6 +26,10 @@ namespace WebApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "WebApi", Version = "v1" });
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = System.IO.Path.Combine(System.AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+                c.EnableAnnotations();
             });
         }
 
